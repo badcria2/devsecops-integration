@@ -1,0 +1,23 @@
+version: "3"
+services:
+  jenkins:
+    container_name: jenkis-devsecops
+    image: jenkins/jenkins
+    ports:
+      - "8080:8080"
+    volumes:
+      - $PWD/jenkins_home:/var/jenkins_home
+    networks:
+      - net-devsecops
+  sonarqube:
+    container_name: sonarqube
+    image: sonarqube:lts
+    ports:
+      - "9000:9000"
+    environment:
+      SONARQUBE_USERNAME: admin
+      SONARQUBE_PASSWORD: 85857855
+    networks:
+      - net-devsecops
+networks:
+  net-devsecops:
